@@ -1,0 +1,278 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Orders</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i|Titillium+Web" rel="stylesheet">
+  <link rel="stylesheet" href="/animate.css">
+  <link rel="stylesheet" href="/style.css"> </head>
+<body>
+  <header id="main-header">
+    <div>
+      <h1 class="heading-1">Inventory</h1> </div>
+    <div class="logo">
+      <svg class="enjazSvg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="212.13px" height="242px" viewBox="0 0 212.13 242" enable-background="new 0 0 212.13 242" xml:space="preserve">
+        <g>
+          <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#482a15" points="106.318,5.74 206.752,63.725 206.752,179.699
+                                                                                  106.318,237.685 5.885,179.699 5.885,63.725 	"></polygon>
+          <path fill-rule="evenodd" clip-rule="evenodd" fill="#cbcbcb" d="M106.318,39.218L34.877,80.466v82.495l71.441,41.246
+                                                                          l100.434-57.987v-33.479c-33.476,19.326-66.955,38.661-100.434,57.987L63.87,146.22V97.205l42.448-24.507l27.951,16.138
+                                                                          l-27.876,16.094l14.451,25.028l56.915-32.859V80.466L106.318,39.218z"></path>
+          <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#d8d8d8" points="106.394,104.93 91.942,113.272 91.942,129.958
+                                                                                  106.394,138.303 120.845,129.958 120.845,113.272 	"></polygon>
+        </g>
+      </svg>
+    </div>
+ </header>
+  <center>
+    <div class="content">
+      <div class="images col-sm-8">
+        <button class="imgButton" id="black_tea_indicator" data-toggle="modal"> <img class="img" src="https://www.colourbox.com/preview/2770483-cup-of-black-tea-isolated-on-black-background.jpg" alt="Black Tea"> </button>
+        <button class="imgButton" id="green_tea_indicator" data-toggle="modal"> <img class="img green" src="http://i.ndtvimg.com/i/2015-04/green-tea_650x379_51430317406.jpg" alt="Green Tea"> </button>
+        <button class="imgButton" id="cinnamon_drink_indicator" data-toggle="modal"> <img class="img borderColorOrangeOnHover" src="http://amorettiblog.com/wp-content/uploads/2012/10/cider-550px.jpg" alt="Cinnamon"> </button>
+        <button class="imgButton" id="coffee_indicator" data-toggle="modal" > <img class="img coffee" src="http://cdn-mf1.heartyhosting.com/sites/mensfitness.com/files/styles/photo_gallery_full/public/coffee_rotator.jpg?itok=XPPK4n41" alt="Coffee"> </button>
+        <button class="imgButton" id="nescafe_indicator" data-toggle="modal" data-target="#myModal5"> <img class="img" src="http://www.adweek.com/files/imagecache/node-blog/blogs/nescafe-paper-mugs-hed-2014.jpg" alt="Nescafe"> </button>
+      </div>
+    </div>
+  </center>
+  <center>
+    <h3 class="text-white">Order List:</h3>
+    <div id="box" class="content" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+    <button onclick="sendSocket()" class="btn btn-success submit">OK</button>
+  </center>
+  <!--
+  #############################
+   MARK: - MODALS
+  #############################
+  -->
+  <div class="modal fade" id="blackTeaSubmitter" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">Black Tea</h4> </div>
+        <div class="modal-body">
+          <label for="number_of_cups" class="cursor_pointer input-label">Number of Cups:</label>
+          <input class="btn-number" id="number_of_cups" type="number" min="1" max="70">
+          <button type="button" class="btn btn-success m-top" id="black_tea_adding_button">Add..</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger m-top" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="greenTeaSubmitter" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">Green Tea</h4> </div>
+        <div class="modal-body">
+          <label for="number_of_cups2" class="cursor_pointer input-label">Number of Cups:</label>
+          <input id="number_of_cups2" type="number" min="1" max="70">
+          <button id="green_tea_adding_button" class="btn btn-success m-top">Add..</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger m-top" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="cinnamonDrinkSubmitter" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">Cinnamon Drink</h4> </div>
+        <div class="modal-body">
+          <label for="number_of_cups3" class="cursor_pointer input-label">Number of Cups:</label>
+          <input id="number_of_cups3" type="number" min="1" max="70">
+          <button id="cd_adder" class="btn btn-success m-top">Add..</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger m-top" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="coffeeSubmitter" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">Coffee</h4> </div>
+        <div class="modal-body">
+          <label for="number_of_cups4" class="cursor_pointer input-label">Number of Cups:</label>
+          <input id="number_of_cups4" type="number" min="1" max="70">
+          <button id="coffee_adding_button" class="btn btn-success m-top">Add..</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger m-top" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="myModal5" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">Nescafe</h4> </div>
+        <div class="modal-body">
+          <label for="number_of_cups" class="cursor_pointer">Number of Cups:</label>
+          <input id="number_of_cups" type="tel" min="1" max="70">
+          <button class="btn btn-success m-top">Add..</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger m-top" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="BlackTeaEdit" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">Black Tea</h4> </div>
+        <div class="modal-body">
+          <label for="number_of_cups6" class="cursor_pointer input-label">Number of Cups:</label>
+          <input id="number_of_cups6" type="number" min="1" max="70"> </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger m-top" id="black_tea_deleter">Delete</button>
+          <button type="button" class="btn btn-success m-top" id="apply_button" data-dismiss="modal">Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="GreenTeaEdit" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">Green Tea</h4> </div>
+        <div class="modal-body">
+          <label for="number_of_cups7" class="cursor_pointer input-label">Number of Cups:</label>
+          <input id="number_of_cups7" min="1" max="70" type="number">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success m-top" data-dismiss="modal" id="apply_button2">Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="CinnamonDrinkEdit" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">Cinnamon Drink</h4> </div>
+        <div class="modal-body">
+          <label for="number_of_cups8" class="cursor_pointer input-label">Number of Cups:</label>
+          <input id="number_of_cups8" type="number" min="1" max="70">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success m-top" data-dismiss="modal" id="apply_button3">Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="CoffeeEdit" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">Coffee</h4> </div>
+        <div class="modal-body">
+          <label for="number_of_cups9" class="cursor_pointer input-label">Number of Cups:</label>
+          <input id="number_of_cups9" type="number" min="1" max="100">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success m-top" data-dismiss="modal" id="apply_button4">Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Some Extra Modals -->
+  <div class="modal fade" id="AlreadyExists" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        <div class="modal-body">
+          <svg>
+            <g>
+              <title>Layer 1</title>
+              <rect id="svg_1" height="80" width="96" y="32.5" x="46.5" stroke-width="1.5" stroke="#000" fill="rgba(255, 255, 255, 0)"></rect>
+              <rect id="svg_2" height="17" width="24" y="46.5" x="59.5" stroke-width="1.5" stroke="#000" fill="rgba(255, 255, 255, 0)"></rect>
+              <rect id="svg_4" height="17" width="26" y="47" x="103.5" stroke-width="1.5" stroke="#000" fill="rgba(255, 255, 255, 0)"></rect>
+              <line stroke-linecap="null" stroke-linejoin="null" id="svg_5" y2="40.5" x2="37.5" y1="29.5" x1="20.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"></line>
+              <line stroke-linecap="null" stroke-linejoin="null" id="svg_6" y2="43.5" x2="40.5" y1="32.5" x1="37.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"></line>
+              <line stroke-linecap="null" stroke-linejoin="null" id="svg_7" y2="43.5" x2="39.5" y1="42.5" x1="28.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="none"></line>
+              <rect id="svg_8" fill="rgba(255, 255, 255, 0)" height="17" width="25" y="76.5" x="104.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000"></rect>
+              <rect id="svg_9" fill="rgba(255, 255, 255, 0)" height="17" width="25" y="75.5" x="60.5" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000"></rect>
+            </g>
+          </svg>
+          <h3>Please Change number of cups from the icon in the menu</h3> </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger m-top" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="successModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <center>
+            <h2 class="modal-title">Success</h2></center>
+        </div>
+        <div class="modal-body">
+          <center class="svg-container"><img src="/svg/checked.svg" class="svg-style" /></center>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success ok-button" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="errorModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <center>
+            <h2 class="modal-title">Error</h2>
+            <h6>Something Went Wrong......</h6></center>
+        </div>
+        <div class="modal-body">
+          <center class="svg-container"><img src="/svg/cancel.svg" class="svg-style" /></center>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success ok-button" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--
+  ******************************************************************
+    JavaScript
+  ******************************************************************
+  -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+
+</html>

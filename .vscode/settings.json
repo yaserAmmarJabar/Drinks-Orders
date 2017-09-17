@@ -1,0 +1,7 @@
+{
+    "editor.fontSize": 16,
+    "editor.fontFamily": "Menlo",
+    "editor.fontWeight": "500",
+    // "editor.lineHeight": 30,
+    "editor.minimap.enabled": false
+}

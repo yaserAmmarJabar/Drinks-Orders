@@ -1,0 +1,277 @@
+body {
+  font-family: 'Raleway', sans-serif;
+  font-weight: normal;
+  background-image: url("http://www.photoaxe.com/wp-content/uploads/2014/08/Cup_Of_Coffee.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.menuItem {
+  display: inline-block;
+}
+
+button {
+  font-weight: 600 !important;
+}
+
+#main-header {
+  margin-top: 50px;
+}
+
+.heading-1 {
+  font-size: 24px;
+  text-align: center;
+  color: #FFF;
+  font-family: 'Raleway', sans-serif;
+  font-weight: normal;
+}
+
+.logo svg {
+  width: 200px;
+  height: 170px;
+  margin-top: -25px;
+}
+
+.svg-style {
+  width: 360px;
+  height: 370px;
+  margin-top: -25px;
+}
+
+.svg-container {
+  margin: 40px;
+}
+
+.ok-button {
+  margin: 0;
+  width: 20%;
+  height: 7%;
+  font-size: 15px;
+}
+
+.input-label {
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+.blackTea_badgeStyle,
+.blackTea_added_badgeStyle,
+.greenTea_badgeStyle,
+.greenTea_added_badgeStyle,
+.cinnamonDrink_badgeStyle,
+.cinnamonDrink_added_badgeStyle,
+.coffee_badgeStyle,
+.coffee_added_badgeStyle,
+.nescafeDrink_badgeStyle {
+  font-family: "Titillium Web", sans-serif;
+  position: absolute;
+  font-size: 15px;
+  padding: 10px 13px 10px 13px;
+  background-color: #ff2525;
+  color: white;
+  border-radius: 50%;
+  display: inline-block;
+  z-index: 1000;
+}
+
+.blackTea_badgeStyle {
+    right: 49%;
+    top: 2.3%;
+}
+
+.greenTea_badgeStyle {
+  right: 11%;
+  top: 2.3%;
+}
+
+.cinnamonDrink_badgeStyle {
+  right: 49%;
+  top: 35%;
+}
+
+.coffee_badgeStyle {
+  right: 11%;
+  top: 35%;
+}
+
+.nescafeDrink_badgeStyle {
+  right: 30%;
+  top: 68.3%;
+}
+
+/* Added Cups Styling */
+
+.blackTea_added_badgeStyle{
+  position: relative;
+  right: 30px;
+  top: -65px;
+}
+
+.greenTea_added_badgeStyle {
+  position: relative;
+  right: 30px;
+  top: -65px;
+}
+
+.cinnamonDrink_added_badgeStyle,
+.coffee_added_badgeStyle {
+  position: relative;  
+  top: -65px;
+  right: 25px;
+}
+
+button{
+  font-family: 'Raleway', sans-serif !important;
+  margin-left: 20px;
+  margin-top: -52px;
+}
+
+.content {
+  margin-left: 50px;
+}
+
+.container {
+  max-width: 550px;
+}
+
+.images {
+  float: right;
+  width: 550px;
+}
+
+#box {
+  padding: 10px;
+  scrollbar-base-color: gold;
+  font-family: 'Raleway', sans-serif;
+}
+
+.img {
+  width: 170px;
+  height: 140px;
+  padding: 5px;
+  margin: 3px;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  border: 7px solid #727272;
+  border-radius: 10px;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  display: inline-block;
+  transition: .2s ease-in-out;
+}
+
+.img:hover {
+  border: 7px solid #b10000;
+  border-radius: 50px;
+  cursor: pointer;
+  -webkit-filter: grayscale(0) blur(0);
+  filter: grayscale(0) blur(0);
+}
+
+.green:hover {
+  border-color: green;
+}
+
+.imgButton {
+  border: none;
+  background: none;
+  outline: 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input {
+  font-family: 'Titillium Web',sans-serif;
+  font-size: 20px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  outline: 0;
+  padding: 8px;
+  width: 40%;  
+}
+
+.white-text {
+  color: #FFF;
+}
+
+.m-top {
+  margin-top: 5px;
+}
+
+.cursor_pointer {
+  margin: 10px;
+  cursor: pointer;
+}
+
+.borderColorOrangeOnHover:hover {
+  border-color: orange;
+}
+
+.coffee:hover {
+  border-color: #1a1a1a;
+}
+
+.no-button {
+  border: none;
+  background: none;
+  outline: 0;
+}
+
+.submit {
+  margin: 20px;
+  width: 35%;
+  padding: 10px;
+}
+
+.border-red {
+  border-color: red !important;
+}
+
+.margin_left {
+  margin-left: 20px;
+  color: red;
+}
+
+svg {
+  margin: 10px;
+}
+
+.enjazSvg {
+  transition: .4s ease-in-out;
+}
+
+.icon {
+  position: absolute;
+  clear: left;
+}
+
+.text-white {
+  color: white;
+}
+
+@media (max-width: 942px) {
+  .content {
+    display: inline-block;
+    width: 100%;
+  }
+  .container2 {
+    width: 95%;
+    margin-left: 50px;
+  }
+}
+
+@media (max-width: 450px) {
+    .enjazSvg {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 448px) {
+  .container2 {
+    width: 90%;
+  }
+}
