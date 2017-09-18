@@ -4,10 +4,10 @@ var fs = require('fs');
 var socket = require('socket.io');
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'drinks_orders'
+  host: 'localhost'
+  , user: 'root'
+  , password: 'password'
+  , database: 'drinks_orders'
 });
 var commonHeaders = {
   'Content-Type': 'text/html'
@@ -37,7 +37,6 @@ app.use(express.static('public'));
 //     }
 //   });
 // }
-
 // console.log(checkDBIfEmpty('menu'));
 // Socket Setup
 var io = socket(server);
@@ -52,7 +51,8 @@ io.on('connection', function (socket) {
     console.log(data);
     /*********************************************
      Database Queries
-    **********************************************/    connection.query("SELECT * FROM menu", function (error, rows, fields) {
+    **********************************************/
+    connection.query("SELECT * FROM menu", function (error, rows, fields) {
       if (!!error) {
         console.error(error);
       }
@@ -74,7 +74,8 @@ io.on('connection', function (socket) {
               console.log(result);
             }
           });
-        }else { // if it is not empty (UPDATE FUNCTION)
+        }
+        else { // if it is not empty (UPDATE FUNCTION)
           console.log('in function UPDATE');
           var UpdateToDrinkString = "UPDATE menu SET drink = '" + Drink + "', number_of_cups = " + numberOfCups + " WHERE drink = " + "'" + Drink + "'" + " ;";
           console.log(UpdateToDrinkString);
@@ -97,5 +98,5 @@ io.on('connection', function (socket) {
         console.log("Succesfully Queried");
       }
     });
-});
+  });
 });
