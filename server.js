@@ -47,9 +47,9 @@ io.on('connection', function (socket) {
       if (data.hasOwnProperty(key)) {
         var numberOfCups = data[key].number_of_cups;
         var Drink = data[key].drink;
-        console.log(data);
       }
     }
+    console.log(data);
     /*********************************************
      Database Queries
     **********************************************/    connection.query("SELECT * FROM menu", function (error, rows, fields) {
