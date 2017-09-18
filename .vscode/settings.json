@@ -1,6 +1,6 @@
 {
     "editor.fontSize": 14,
-    "editor.fontFamily": "Roboto Mono",
+    "editor.fontFamily": "fira code",
     "editor.fontWeight": "700",
     // "editor.lineHeight": 30,
     "editor.minimap.enabled": false

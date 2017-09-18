@@ -42,7 +42,7 @@ function setObjectForDrink(drink, userEnteredDrinkNumberOfCupsValue) {
 }
 // emitting socket on submit button click
 function sendSocket() {
-  setObjectForDrink("black tea", userEnteredBlackTeaNumberOfCups.value);
+  console.log(KitchenArray);
   socket.emit("data", KitchenArray);
   socket.on('success', function (data) {
     console.log(data);
@@ -113,7 +113,7 @@ function check() {
 }
 
 // 1. adding to menu
-function addItemToMenuIfClicked(drinkAddingButton, drinkOrderedWithHT, drinkOrderedWithoutHT, drinkModalIdInCreation, drinkNumberOfCups, userEnteredDrinkNumberOfCupsValue, drinkEditInputId /* with hashtag */ , drinkIndicator /* For Popup Functionality */ , currentModal, containerIdInCreation, drinkBadgeClass, drinkModalApplyButton, imageURL) {
+function addItemToMenuIfClicked(drinkName, drinkAddingButton, drinkOrderedWithHT, drinkOrderedWithoutHT, drinkModalIdInCreation, drinkNumberOfCups, userEnteredDrinkNumberOfCupsValue, drinkEditInputId /* with hashtag */ , drinkIndicator /* For Popup Functionality */ , currentModal, containerIdInCreation, drinkBadgeClass, drinkModalApplyButton, imageURL) {
   $(drinkAddingButton).on("click", function () {
     // Numbers Test
     if (drinkNumberOfCups.value >= 1 && drinkNumberOfCups.value <= 100) {
@@ -140,7 +140,7 @@ function addItemToMenuIfClicked(drinkAddingButton, drinkOrderedWithHT, drinkOrde
           userEnteredDrinkNumberOfCupsValue.value = drinkNumberOfCups.value;
           $("#box").append(drinkImage);
           $("#box").append(badgeImage);
-          console.log(drinkModalApplyButton);
+          setObjectForDrink(drinkName, userEnteredDrinkNumberOfCupsValue.value);
           $(drinkModalApplyButton).on('click', function () {
             console.log("click is triggered");
             var value = $(drinkEditInputId).val();
@@ -167,10 +167,10 @@ function handleExtraNumbers(element) {
   console.log('Number problem handle function');
 }
 // 2. Use of function
-addItemToMenuIfClicked("#black_tea_adding_button", "#black_tea_ordered", "black_tea_ordered", "#BlackTeaEdit", blackTeaNumberOfCups, userEnteredBlackTeaNumberOfCups, '#number_of_cups6', "#black_tea_indicator", "#blackTeaSubmitter", "bt_container", 'blackTea_added_badgeStyle', "#apply_button", "https://www.colourbox.com/preview/2770483-cup-of-black-tea-isolated-on-black-background.jpg");
-addItemToMenuIfClicked("#green_tea_adding_button", "#green_tea_ordered", "green_tea_ordered", "#GreenTeaEdit", greenTeaNumberOfCups, userEnteredGreenTeaNumberOfCups, '#number_of_cups7', '#green_tea_indicator', '#greenTeaSubmitter', "gt_container", 'greenTea_added_badgeStyle', "#apply_button2", "http://i.ndtvimg.com/i/2015-04/green-tea_650x379_51430317406.jpg");
-addItemToMenuIfClicked("#cd_adder", "#cinnamon_drink_ordered", "cinnamon_drink_ordered", "#CinnamonDrinkEdit", cinnamonDrinkNumberOfCups, userEnteredCinnamonDrinkNumberOfCups, "#number_of_cups8", '#cinnamon_drink_indicator', '#cinnamonDrinkSubmitter', "cd_container", 'cinnamonDrink_added_badgeStyle', "#apply_button3", "http://amorettiblog.com/wp-content/uploads/2012/10/cider-550px.jpg");
-addItemToMenuIfClicked("#coffee_adding_button", "#coffee_ordered", "coffee_ordered", "#CoffeeEdit", coffeNumberOfCups, userEnteredCoffeeNumberOfCups, "#number_of_cups9", "#coffee_indicator", "#coffeeSubmitter", "cf_container", "coffee_added_badgeStyle", "#apply_button4", "http://cdn-mf1.heartyhosting.com/sites/mensfitness.com/files/styles/photo_gallery_full/public/coffee_rotator.jpg?itok=XPPK4n41");
+addItemToMenuIfClicked("black tea", "#black_tea_adding_button", "#black_tea_ordered", "black_tea_ordered", "#BlackTeaEdit", blackTeaNumberOfCups, userEnteredBlackTeaNumberOfCups, '#number_of_cups6', "#black_tea_indicator", "#blackTeaSubmitter", "bt_container", 'blackTea_added_badgeStyle', "#apply_button", "https://www.colourbox.com/preview/2770483-cup-of-black-tea-isolated-on-black-background.jpg");
+addItemToMenuIfClicked("green tea", "#green_tea_adding_button", "#green_tea_ordered", "green_tea_ordered", "#GreenTeaEdit", greenTeaNumberOfCups, userEnteredGreenTeaNumberOfCups, '#number_of_cups7', '#green_tea_indicator', '#greenTeaSubmitter', "gt_container", 'greenTea_added_badgeStyle', "#apply_button2", "http://i.ndtvimg.com/i/2015-04/green-tea_650x379_51430317406.jpg");
+addItemToMenuIfClicked("cinnamon drink", "#cd_adder", "#cinnamon_drink_ordered", "cinnamon_drink_ordered", "#CinnamonDrinkEdit", cinnamonDrinkNumberOfCups, userEnteredCinnamonDrinkNumberOfCups, "#number_of_cups8", '#cinnamon_drink_indicator', '#cinnamonDrinkSubmitter', "cd_container", 'cinnamonDrink_added_badgeStyle', "#apply_button3", "http://amorettiblog.com/wp-content/uploads/2012/10/cider-550px.jpg");
+addItemToMenuIfClicked("coffee", "#coffee_adding_button", "#coffee_ordered", "coffee_ordered", "#CoffeeEdit", coffeNumberOfCups, userEnteredCoffeeNumberOfCups, "#number_of_cups9", "#coffee_indicator", "#coffeeSubmitter", "cf_container", "coffee_added_badgeStyle", "#apply_button4", "http://cdn-mf1.heartyhosting.com/sites/mensfitness.com/files/styles/photo_gallery_full/public/coffee_rotator.jpg?itok=XPPK4n41");
 
 /*=================================================================
  Modal POP UP (END)
