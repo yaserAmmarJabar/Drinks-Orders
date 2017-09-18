@@ -19,6 +19,61 @@ function substractFromGlobalVar(value) {
   globalVar -= value;
 }
 
+/******************************************************************
+ Socket Functionality
+******************************************************************/
+var KitchenArray = [];
+
+function pushToKitchenArray(object) {
+  KitchenArray.push(object);
+}
+var id = 1;
+
+function setObjectForDrink(drink, userEnteredDrinkNumberOfCupsValue) {
+  var object = {
+    "id": id,
+     "drink": drink,
+    "number_of_cups": userEnteredDrinkNumberOfCupsValue
+  };
+  console.log(userEnteredDrinkNumberOfCupsValue);
+  // console.log(object);
+  pushToKitchenArray(object);
+  id += 1;
+}
+// emitting socket on submit button click
+function sendSocket() {
+  setObjectForDrink("black tea", userEnteredBlackTeaNumberOfCups.value);
+  socket.emit("data", KitchenArray);
+  socket.on('success', function (data) {
+    console.log(data);
+    for (var key in data) {
+      if (data.hasOwnProperty(key)) {
+        var success = data.success;
+        console.log(success);
+        if (success == true) {
+          sendSuccessModal();
+        }
+        else {
+          sendErrorModal();
+        }
+      }
+    }
+  });
+}
+
+function sendSuccessModal() {
+  console.log('in success Function');
+  $('#successModal').modal('show');
+}
+
+function sendErrorModal() {
+  console.log('in error modal function');
+  $("#errorModal").modal('show');
+}
+/*=================================================================
+ Socket Functionality (END)
+=================================================================*/
+
 /*
 *****************************************************************
  Modal POP UP
@@ -129,60 +184,6 @@ addItemToMenuIfClicked("#coffee_adding_button", "#coffee_ordered", "coffee_order
 // });
 /*=================================================================
  JQUERY Deleting (END)
-=================================================================*/
-/******************************************************************
- Socket Functionality
-******************************************************************/
-var KitchenArray = [];
-
-function pushToKitchenArray(object) {
-  KitchenArray.push(object);
-}
-var id = 1;
-
-function setObjectForDrink(drink, userEnteredDrinkNumberOfCupsValue) {
-  var object = {
-    "id": id,
-     "drink": drink,
-    "number_of_cups": userEnteredDrinkNumberOfCupsValue
-  };
-  console.log(userEnteredDrinkNumberOfCupsValue);
-  // console.log(object);
-  pushToKitchenArray(object);
-  id += 1;
-}
-// emitting socket on submit button click
-function sendSocket() {
-  setObjectForDrink("black tea", userEnteredBlackTeaNumberOfCups.value);
-  socket.emit("data", KitchenArray);
-  socket.on('success', function (data) {
-    console.log(data);
-    for (var key in data) {
-      if (data.hasOwnProperty(key)) {
-        var success = data.success;
-        console.log(success);
-        if (success == true) {
-          sendSuccessModal();
-        }
-        else {
-          sendErrorModal();
-        }
-      }
-    }
-  });
-}
-
-function sendSuccessModal() {
-  console.log('in success Function');
-  $('#successModal').modal('show');
-}
-
-function sendErrorModal() {
-  console.log('in error modal function');
-  $("#errorModal").modal('show');
-}
-/*=================================================================
- Socket Functionality (END)
 =================================================================*/
 // Only numbers are allowed in inputs
 $(document).ready(function () {
