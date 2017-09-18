@@ -7,7 +7,6 @@ var userEnteredBlackTeaNumberOfCups = document.getElementById('number_of_cups6')
 var userEnteredGreenTeaNumberOfCups = document.getElementById('number_of_cups7');
 var userEnteredCinnamonDrinkNumberOfCups = document.getElementById('number_of_cups8');
 var userEnteredCoffeeNumberOfCups = document.getElementById('number_of_cups9');
-
 // Socket io connection
 var socket = io('http://localhost:3000/');
 /******************************************************************
@@ -18,7 +17,6 @@ var globalVar = 1000;
 function substractFromGlobalVar(value) {
   globalVar -= value;
 }
-
 /******************************************************************
  Socket Functionality
 ******************************************************************/
@@ -31,9 +29,9 @@ var id = 1;
 
 function setObjectForDrink(drink, userEnteredDrinkNumberOfCupsValue) {
   var object = {
-    "id": id,
-     "drink": drink,
-    "number_of_cups": userEnteredDrinkNumberOfCupsValue
+    "id": id
+    , "drink": drink
+    , "number_of_cups": userEnteredDrinkNumberOfCupsValue
   };
   console.log(userEnteredDrinkNumberOfCupsValue);
   // console.log(object);
@@ -73,13 +71,11 @@ function sendErrorModal() {
 /*=================================================================
  Socket Functionality (END)
 =================================================================*/
-
 /*
 *****************************************************************
  Modal POP UP
 *****************************************************************
 */
-
 // 1. Global Function
 function enablePopupFunctionality(drinkShowingModalButtonId, orderedId /* every drinks gets ordered has the ordered id */ , drinkModalId) {
   $(drinkShowingModalButtonId).on("click", function () {
@@ -87,20 +83,19 @@ function enablePopupFunctionality(drinkShowingModalButtonId, orderedId /* every 
       // Show the Already Exists Modal
       console.log("it's already there");
       $('#AlreadyExists').modal('show');
-    } else /* does not exist */ {
+    }
+    else /* does not exist */ {
       console.log('object has been clicked');
-
       // Create One
       // 1. Call The Drink Submitter
       $(drinkModalId).modal('show');
     }
   });
 }
-
 // 2. Use of function
 enablePopupFunctionality("#black_tea_indicator", "#black_tea_ordered", "#blackTeaSubmitter");
 enablePopupFunctionality("#green_tea_indicator", "#green_tea_ordered", "#greenTeaSubmitter");
-enablePopupFunctionality("#cinnamon_drink_indicator", "#cinnamon_drink_ordered","#cinnamonDrinkSubmitter");
+enablePopupFunctionality("#cinnamon_drink_indicator", "#cinnamon_drink_ordered", "#cinnamonDrinkSubmitter");
 enablePopupFunctionality("#coffee_indicator", "#coffee_ordered", "#coffeeSubmitter");
 
 function check() {
@@ -111,7 +106,6 @@ function check() {
     console.log("it does'nt exist");
   }
 }
-
 // 1. adding to menu
 function addItemToMenuIfClicked(drinkName, drinkAddingButton, drinkOrderedWithHT, drinkOrderedWithoutHT, drinkModalIdInCreation, drinkNumberOfCups, userEnteredDrinkNumberOfCupsValue, drinkEditInputId /* with hashtag */ , drinkIndicator /* For Popup Functionality */ , currentModal, containerIdInCreation, drinkBadgeClass, drinkModalApplyButton, imageURL) {
   $(drinkAddingButton).on("click", function () {
@@ -150,18 +144,18 @@ function addItemToMenuIfClicked(drinkName, drinkAddingButton, drinkOrderedWithHT
         enablePopupFunctionality(drinkIndicator, drinkOrderedWithHT, drinkModalIdInCreation);
         drinkNumberOfCups.value = "";
       }
-    } else {
+    }
+    else {
       console.log('it doesnt works');
       handleExtraNumbers(drinkNumberOfCups);
     }
-
   });
 }
 
 function handleExtraNumbers(element) {
   var animationName = 'animated shake border-red';
   var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-  $(element).addClass(animationName).one(animationEnd, function() {
+  $(element).addClass(animationName).one(animationEnd, function () {
     $(this).removeClass(animationName);
   });
   console.log('Number problem handle function');
@@ -171,7 +165,6 @@ addItemToMenuIfClicked("black tea", "#black_tea_adding_button", "#black_tea_orde
 addItemToMenuIfClicked("green tea", "#green_tea_adding_button", "#green_tea_ordered", "green_tea_ordered", "#GreenTeaEdit", greenTeaNumberOfCups, userEnteredGreenTeaNumberOfCups, '#number_of_cups7', '#green_tea_indicator', '#greenTeaSubmitter', "gt_container", 'greenTea_added_badgeStyle', "#apply_button2", "http://i.ndtvimg.com/i/2015-04/green-tea_650x379_51430317406.jpg");
 addItemToMenuIfClicked("cinnamon drink", "#cd_adder", "#cinnamon_drink_ordered", "cinnamon_drink_ordered", "#CinnamonDrinkEdit", cinnamonDrinkNumberOfCups, userEnteredCinnamonDrinkNumberOfCups, "#number_of_cups8", '#cinnamon_drink_indicator', '#cinnamonDrinkSubmitter', "cd_container", 'cinnamonDrink_added_badgeStyle', "#apply_button3", "http://amorettiblog.com/wp-content/uploads/2012/10/cider-550px.jpg");
 addItemToMenuIfClicked("coffee", "#coffee_adding_button", "#coffee_ordered", "coffee_ordered", "#CoffeeEdit", coffeNumberOfCups, userEnteredCoffeeNumberOfCups, "#number_of_cups9", "#coffee_indicator", "#coffeeSubmitter", "cf_container", "coffee_added_badgeStyle", "#apply_button4", "http://cdn-mf1.heartyhosting.com/sites/mensfitness.com/files/styles/photo_gallery_full/public/coffee_rotator.jpg?itok=XPPK4n41");
-
 /*=================================================================
  Modal POP UP (END)
 =================================================================*/
