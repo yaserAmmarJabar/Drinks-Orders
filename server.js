@@ -4,10 +4,10 @@ var fs = require('fs');
 var socket = require('socket.io');
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-  host: 'localhost'
-  , user: 'root'
-  , password: 'password'
-  , database: 'drinks_orders'
+  host: 'localhost',
+  user: 'root',
+  password: 'password',
+  database: 'drinks_orders'
 });
 var commonHeaders = {
   'Content-Type': 'text/html'
@@ -46,57 +46,56 @@ io.on('connection', function (socket) {
       if (data.hasOwnProperty(key)) {
         var numberOfCups = data[key].number_of_cups;
         var Drink = data[key].drink;
+        addDrinkToDB(Drink, numberOfCups);
       }
     }
     console.log(data);
     /*********************************************
      Database Queries
     **********************************************/
-    connection.query("SELECT * FROM menu", function (error, rows, fields) {
-      if (!!error) {
-        console.error(error);
-      }
-      else {
-        if (rows.length < 1) { // if it is empty (INSERT FUNCTION)
-          console.log("in function INSERT");
-          var InsertIntoString = 'INSERT INTO menu (drink, number_of_cups) values ("' + Drink + '",' + numberOfCups + ');';
-          var InsertIntoQuery = connection.query(InsertIntoString, function (err, result) {
-            if (err) {
-              socket.emit('success', {
-                'success': false
-              });
-              console.error(err);
-            }
-            else {
-              socket.emit('success', {
-                'success': true
-              });
-              console.log(result);
-            }
-          });
+    function addDrinkToDB(drinkName, drinkNumberOfCups) {
+      connection.query("SELECT * FROM menu", function (error, rows, fields) {
+        if (!!error) {
+          console.error(error);
+        } else {
+          if (rows.length < 1) { // if it is empty (INSERT FUNCTION)
+            console.log("in function INSERT");
+            var InsertIntoString = 'INSERT INTO menu (drink, number_of_cups) values ("' + drinkName + '",' + drinkNumberOfCups + ');';
+            var InsertIntoQuery = connection.query(InsertIntoString, function (err, result) {
+              if (err) {
+                socket.emit('success', {
+                  'success': false
+                });
+                console.error(err);
+              } else {
+                socket.emit('success', {
+                  'success': true
+                });
+                console.log(result);
+              }
+            });
+          } else { // if it is not empty (UPDATE FUNCTION)
+            console.log('in function UPDATE');
+            var UpdateToDrinkString = "UPDATE menu SET drink = '" + drinkName + "', number_of_cups = " + drinkNumberOfCups + " WHERE drink = " + "'" + drinkName + "'" + " ;";
+            console.log(UpdateToDrinkString);
+            var UpdateToDrink = connection.query(UpdateToDrinkString, function (error, result) {
+              if (error) {
+                socket.emit('success', {
+                  'success': false
+                });
+                console.error(error);
+              } else {
+                socket.emit('success', {
+                  'success': true
+                });
+                console.log(result);
+              }
+            });
+            console.log("black tea?");
+          }
+          console.log("Succesfully Queried");
         }
-        else { // if it is not empty (UPDATE FUNCTION)
-          console.log('in function UPDATE');
-          var UpdateToDrinkString = "UPDATE menu SET drink = '" + Drink + "', number_of_cups = " + numberOfCups + " WHERE drink = " + "'" + Drink + "'" + " ;";
-          console.log(UpdateToDrinkString);
-          var UpdateToDrink = connection.query(UpdateToDrinkString, function (error, result) {
-            if (error) {
-              socket.emit('success', {
-                'success': false
-              });
-              console.error(error);
-            }
-            else {
-              socket.emit('success', {
-                'success': true
-              });
-              console.log(result);
-            }
-          });
-          console.log("black tea?");
-        }
-        console.log("Succesfully Queried");
-      }
-    });
+      });
+    }
   });
 });
