@@ -116,7 +116,7 @@ button {
 
 .cinnamonDrink_added_badgeStyle,
 .coffee_added_badgeStyle {
-  position: relative;  
+  position: relative;
   top: -65px;
   right: 25px;
 }
@@ -177,6 +177,7 @@ button{
   border: none;
   background: none;
   outline: 0;
+  margin-top: -95px;
 }
 
 input[type="text"],
@@ -191,7 +192,7 @@ input {
   border-radius: 10px;
   outline: 0;
   padding: 8px;
-  width: 40%;  
+  width: 40%;
 }
 
 .white-text {
