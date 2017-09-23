@@ -18,6 +18,11 @@ button {
   margin-top: 50px;
 }
 
+center h3.heading {
+  margin-bottom: 40px;
+  margin-left: 30px;
+}
+
 .heading-1 {
   font-size: 24px;
   text-align: center;
@@ -40,6 +45,11 @@ button {
 
 .svg-container {
   margin: 40px;
+}
+
+.submit {
+  margin-top: -40px !important;
+  margin-left: 50px !important;
 }
 
 .ok-button {

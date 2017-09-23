@@ -134,6 +134,7 @@ function addItemToMenuIfClicked(drinkName, drinkAddingButton, drinkOrderedWithHT
           userEnteredDrinkNumberOfCupsValue.value = drinkNumberOfCups.value;
           $("#box").append(drinkImage);
           $("#box").append(badgeImage);
+          $(".submit").removeAttr("disabled");
           setObjectForDrink(drinkName, userEnteredDrinkNumberOfCupsValue.value);
           $(drinkModalApplyButton).on('click', function () {
             console.log("click is triggered");
