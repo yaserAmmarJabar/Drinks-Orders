@@ -171,7 +171,7 @@ button{
   transition: .2s ease-in-out;
 }
 
-.img:hover {
+.images .img:hover {
   border: 7px solid #b10000;
   border-radius: 50px;
   cursor: pointer;
