@@ -29,9 +29,9 @@ var id = 1;
 
 function setObjectForDrink(drink, userEnteredDrinkNumberOfCupsValue) {
   var object = {
-    "id": id
-    , "drink": drink
-    , "number_of_cups": userEnteredDrinkNumberOfCupsValue
+    "id": id,
+    "drink": drink,
+    "number_of_cups": userEnteredDrinkNumberOfCupsValue
   };
   console.log(userEnteredDrinkNumberOfCupsValue);
   // console.log(object);
