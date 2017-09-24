@@ -54,10 +54,13 @@ io.on('connection', function (socket) {
      Database Queries
     **********************************************/
     function addDrinkToDB(drinkName, drinkNumberOfCups) {
-      connection.query("SELECT * FROM menu", function (error, rows, fields) {
+      var query = connection.query("SELECT * FROM menu WHERE drink = '" + drinkName + "'", function (error, rows, fields) {
         if (!!error) {
           console.error(error);
+          console.log(query.sql);
         } else {
+          console.log(query.sql);
+          console.log("result is: ", rows);
           if (rows.length < 1) { // if it is empty (INSERT FUNCTION)
             console.log("in function INSERT");
             var InsertIntoString = 'INSERT INTO menu (drink, number_of_cups) values ("' + drinkName + '",' + drinkNumberOfCups + ');';
