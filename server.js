@@ -23,8 +23,14 @@ app.get('/', function (request, response) {
   response.writeHead(200, commonHeaders);
   fs.createReadStream('./public/index.html').pipe(response);
 });
+
+app.get("/order", function (request, response) {
+  response.writeHead(200, commonHeaders);
+  fs.createReadStream('./order/order.html').pipe(response);
+})
 // Static Files
 app.use(express.static('public'));
+app.use(express.static('order'));
 // Global Functions
 // function checkDBIfEmpty(tableName) {
 //   connection.query("SELECT * FROM " + tableName, function(error, rows, fields) {
