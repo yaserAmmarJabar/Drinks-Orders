@@ -180,7 +180,15 @@ button{
 }
 
 .green:hover {
-  border-color: green;
+  border-color: green !important;
+}
+
+.borderColorOrangeOnHover:hover {
+  border-color: orange !important;
+}
+
+.coffee:hover {
+  border-color: #1a1a1a !important;
 }
 
 .imgButton {
@@ -216,14 +224,6 @@ input {
 .cursor_pointer {
   margin: 10px;
   cursor: pointer;
-}
-
-.borderColorOrangeOnHover:hover {
-  border-color: orange;
-}
-
-.coffee:hover {
-  border-color: #1a1a1a;
 }
 
 .no-button {
