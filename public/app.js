@@ -111,7 +111,6 @@ function addItemToMenuIfClicked(drinkName, drinkAddingButton, drinkOrderedWithHT
   $(drinkAddingButton).on("click", function () {
     // Numbers Test
     if (drinkNumberOfCups.value >= 1 && drinkNumberOfCups.value <= 100) {
-      // rest of function
       $(currentModal).modal("hide");
       console.log("drink adder clicked");
       // double check that everything is well organized
@@ -136,6 +135,7 @@ function addItemToMenuIfClicked(drinkName, drinkAddingButton, drinkOrderedWithHT
           $("#box").append(badgeImage);
           $(".submit").removeAttr("disabled");
           setObjectForDrink(drinkName, userEnteredDrinkNumberOfCupsValue.value);
+          // when the apply button is clicked
           $(drinkModalApplyButton).on('click', function () {
             console.log("click is triggered");
             var value = $(drinkEditInputId).val();
