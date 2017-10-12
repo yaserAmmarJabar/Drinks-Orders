@@ -221,6 +221,14 @@ input {
   width: 40%;
 }
 
+.add-image {
+  float: right;
+  width: 80px;
+  height: 80px;
+  position: relative;
+  margin-left: 320px;
+}
+
 .white-text {
   color: #FFF;
 }

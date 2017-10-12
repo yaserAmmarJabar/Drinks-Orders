@@ -27,13 +27,13 @@ function pushToKitchenArray(object) {
 }
 var id = 1;
 
-function setObjectForDrink(drink, userEnteredDrinkNumberOfCupsValue) {
+function setObjectForDrink(drink, userEnteredDrinkNumberOfCups) {
   var object = {
     "id": id,
     "drink": drink,
-    "number_of_cups": userEnteredDrinkNumberOfCupsValue
+    "number_of_cups": userEnteredDrinkNumberOfCups.value
   };
-  console.log(userEnteredDrinkNumberOfCupsValue);
+  console.log('user enterewd value is:',userEnteredDrinkNumberOfCups);
   // console.log(object);
   pushToKitchenArray(object);
   id += 1;
@@ -134,7 +134,7 @@ function addItemToMenuIfClicked(drinkName, drinkAddingButton, drinkOrderedWithHT
           $("#box").append(drinkImage);
           $("#box").append(badgeImage);
           $(".submit").removeAttr("disabled");
-          setObjectForDrink(drinkName, userEnteredDrinkNumberOfCupsValue.value);
+          setObjectForDrink(drinkName, userEnteredDrinkNumberOfCupsValue);
           // when the apply button is clicked
           $(drinkModalApplyButton).on('click', function () {
             console.log("click is triggered");
