@@ -1,6 +1,6 @@
 {
-    "editor.fontFamily": "SF Mono",
-    "editor.fontWeight": "400",
-    // "editor.lineHeight": 30,
+    // "editor.fontFamily": "SF Mono",
+    // "editor.fontWeight": "400",
+    // // "editor.lineHeight": 30,
     "editor.minimap.enabled": false
 }

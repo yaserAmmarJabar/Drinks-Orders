@@ -27,7 +27,7 @@ app.get('/', function (request, response) {
 app.get("/order", function (request, response) {
   response.writeHead(200, commonHeaders);
   fs.createReadStream('./order/order.html').pipe(response);
-})
+});
 // Static Files
 app.use(express.static('public'));
 app.use(express.static('order'));
