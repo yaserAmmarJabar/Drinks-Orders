@@ -221,6 +221,28 @@ input {
   width: 40%;
 }
 
+.add-button {
+  font-family: 'Raleway', sans-serif;
+  font-size: 5em;
+  font-weight: 400;
+  background-color: #f81665 !important;
+  color: white;
+  text-shadow: black 10px 7px 24px;;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 40px;
+  padding-left: 40px;
+  border-radius: 50%;
+  float: right;
+  margin-right: 50px;
+  margin-top: -10px;
+  transition: .4s ease;
+}
+
+.add-button:hover {
+  background-color:  #f54c87 !important;
+}
+
 .add-image {
   float: right;
   width: 80px;

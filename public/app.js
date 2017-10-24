@@ -176,6 +176,14 @@ addItemToMenuIfClicked("coffee", "#coffee_adding_button", "#coffee_ordered", "co
 //   $("#bt_container").remove();/* remove the whole container */
 //   console.log("removed");
 // });
+
+/******************************************************************
+ JQUERY (Adding)
+******************************************************************/
+
+function addDrink() {
+  $("#add-modal").modal("show");
+}
 /*=================================================================
  JQUERY Deleting (END)
 =================================================================*/
